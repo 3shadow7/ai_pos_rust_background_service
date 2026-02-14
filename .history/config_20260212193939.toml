@@ -1,0 +1,22 @@
+port = 8080
+auth_token = "secret_token_change_me"
+log_level = "info"
+
+[devices]
+[[devices.printers]]
+id = "printer_kitchen"
+device_type = "network"
+connection = "192.168.1.200:9100"
+
+[[devices.printers]]
+id = "printer_counter"
+device_type = "mock"
+connection = "COM1"
+
+[[devices.drawers]]
+id = "drawer_1"
+device_type = "mock"
+
+[[devices.displays]]
+id = "display_customer"
+device_type = "mock"

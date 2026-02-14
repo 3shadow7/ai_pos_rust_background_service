@@ -1,0 +1,6 @@
+2026-02-14T12:39:53.796367Z  INFO pos_hardware_service: Starting POS Hardware Service v0.1.0
+2026-02-14T12:39:53.796500Z  INFO pos_hardware_service: Configuration loaded. Port: 7777, Log Level: info
+2026-02-14T12:39:53.803037Z  INFO pos_hardware_service::utils: No serial ports detected on this system.
+2026-02-14T12:39:53.803138Z  INFO pos_hardware_service: Device configuration loaded successfully
+2026-02-14T12:39:53.803207Z  INFO pos_hardware_service: Initializing WebSocket server...
+2026-02-14T12:39:53.804719Z  INFO pos_hardware_service::socket: WebSocket server listening on 127.0.0.1:7777
