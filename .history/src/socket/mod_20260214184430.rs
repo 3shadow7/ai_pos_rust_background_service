@@ -37,8 +37,6 @@ pub enum Command {
 #[derive(Deserialize, Debug)]
 pub struct PrintData {
     pub text: Option<String>,
-    #[serde(default)]
-    pub auto_cut: bool, // Defaults to false if missing in JSON
 }
 
 #[derive(Deserialize, Debug)]
@@ -144,55 +142,13 @@ async fn process_message(text: &str, authenticated: &mut bool, devices: &Arc<Dev
         }
         Ok(Command::Print { device_id, data }) => {
             if let Some(printer) = devices.get_printer(&device_id).await {
-                // Construct a single unified byte buffer for the print job
-                // This ensures "Text + Cut" happens as one atomic operation,
-                // preventing the OS Spooler (Windows) from treating them as separate jobs
-                // which can cause the cut command to fail or be ignored.
-                
-                let mut buffer: Vec<u8> = Vec::new();
-                
-                // 1. Initialize Printer (ESC @) - Standard ESC/POS
-                // This is safe to send even if the printer is already initialized.
-                // It ensures we start with a clean state (no stuck Bold/DoubleWidth modes).
-                buffer.extend_from_slice(&[0x1B, 0x40]);
-
-                // 2. Add content
                 if let Some(text) = data.text {
-                     buffer.extend_from_slice(text.as_bytes());
-                     // Ensure connection ends with a newline to flush the buffer on some devices
-                     if !text.ends_with('\n') {
-                         buffer.push(b'\n');
+                     match printer.print_text(&text).await {
+                         Ok(_) => Response { status: "ok".into(), device_id: Some(device_id), message: None },
+                         Err(e) => Response { status: "error".into(), device_id: Some(device_id), message: Some(e.to_string()) },
                      }
-                }
-                
-                // 3. Auto-Cut Sequence
-                if data.auto_cut {
-                    // Feed 3 lines (ESC d 3) to clear the cutter blade
-                    buffer.extend_from_slice(&[0x1B, 0x64, 0x03]);
-                    // Cut Paper (GS V 66 0)
-                    buffer.extend_from_slice(&[0x1D, 0x56, 0x42, 0x00]);
-                }
-
-                // 4. Send as ONE unified raw command
-                if let Err(e) = printer.print_raw(&buffer).await {
-                     return Response { status: "error".into(), device_id: Some(device_id), message: Some(e.to_string()) };
-                }
-
-                Response { status: "ok".into(), device_id: Some(device_id), message: None }
-            } else {
-                Response { status: "error".into(), device_id: Some(device_id), message: Some("Device not found".into()) }
-            }
-        }
-        Ok(Command::Cut { device_id }) => {
-            if let Some(printer) = devices.get_printer(&device_id).await {
-                // Use the same robust sequence for independent cuts
-                let cut_seq = [
-                    0x1B, 0x64, 0x03,       // Feed 3 lines
-                    0x1D, 0x56, 0x42, 0x00, // Cut
-                ];
-                match printer.print_raw(&cut_seq).await {
-                    Ok(_) => Response { status: "ok".into(), device_id: Some(device_id), message: None },
-                    Err(e) => Response { status: "error".into(), device_id: Some(device_id), message: Some(e.to_string()) },
+                } else {
+                    Response { status: "error".into(), device_id: Some(device_id), message: Some("No text provided".into()) }
                 }
             } else {
                 Response { status: "error".into(), device_id: Some(device_id), message: Some("Device not found".into()) }
