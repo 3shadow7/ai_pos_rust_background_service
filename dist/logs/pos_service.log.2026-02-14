@@ -1,6 +1,56 @@
-2026-02-14T12:39:53.796367Z  INFO pos_hardware_service: Starting POS Hardware Service v0.1.0
-2026-02-14T12:39:53.796500Z  INFO pos_hardware_service: Configuration loaded. Port: 7777, Log Level: info
-2026-02-14T12:39:53.803037Z  INFO pos_hardware_service::utils: No serial ports detected on this system.
-2026-02-14T12:39:53.803138Z  INFO pos_hardware_service: Device configuration loaded successfully
-2026-02-14T12:39:53.803207Z  INFO pos_hardware_service: Initializing WebSocket server...
-2026-02-14T12:39:53.804719Z  INFO pos_hardware_service::socket: WebSocket server listening on 127.0.0.1:7777
+2026-02-14T16:33:10.141427Z  INFO pos_hardware_service: Starting POS Hardware Service v0.1.0
+2026-02-14T16:33:10.141666Z  INFO pos_hardware_service: Configuration loaded. Port: 7777, Log Level: info
+2026-02-14T16:33:10.148911Z  INFO pos_hardware_lib::utils: No serial ports detected on this system.
+2026-02-14T16:33:10.149178Z  INFO pos_hardware_lib::device_manager: Loading Windows Printer: POS-58
+2026-02-14T16:33:10.149424Z  INFO pos_hardware_service: Device configuration loaded successfully
+2026-02-14T16:33:10.149563Z  INFO pos_hardware_service: Initializing WebSocket server...
+2026-02-14T16:33:10.151408Z  INFO pos_hardware_lib::socket: WebSocket server listening on 127.0.0.1:7777
+2026-02-14T16:33:12.969454Z  INFO pos_hardware_lib::socket: Incoming connection from 127.0.0.1:59897
+2026-02-14T16:33:12.972450Z  WARN pos_hardware_lib::socket: Authentication failed with token: 7777
+2026-02-14T16:33:29.053075Z  INFO pos_hardware_lib::socket: Client disconnected
+2026-02-14T16:33:50.569954Z  INFO pos_hardware_lib::socket: Incoming connection from 127.0.0.1:64399
+2026-02-14T16:33:50.571558Z  WARN pos_hardware_lib::socket: Authentication failed with token: 7777
+2026-02-14T16:35:02.465188Z  INFO pos_hardware_service: Starting POS Hardware Service v0.1.0
+2026-02-14T16:35:02.465317Z  INFO pos_hardware_service: Configuration loaded. Port: 7777, Log Level: info
+2026-02-14T16:35:02.471844Z  INFO pos_hardware_lib::utils: No serial ports detected on this system.
+2026-02-14T16:35:02.471968Z  INFO pos_hardware_lib::device_manager: Loading Windows Printer: POS-58
+2026-02-14T16:35:02.472091Z  INFO pos_hardware_service: Device configuration loaded successfully
+2026-02-14T16:35:02.472215Z  INFO pos_hardware_service: Initializing WebSocket server...
+2026-02-14T16:35:02.473758Z  INFO pos_hardware_lib::socket: WebSocket server listening on 127.0.0.1:7777
+2026-02-14T16:35:04.062284Z  INFO pos_hardware_lib::socket: Incoming connection from 127.0.0.1:51096
+2026-02-14T16:35:18.582974Z  INFO pos_hardware_lib::socket: Client disconnected
+2026-02-14T16:35:27.468847Z  INFO pos_hardware_lib::socket: Incoming connection from 127.0.0.1:53070
+2026-02-14T16:36:04.483164Z  INFO pos_hardware_service: Starting POS Hardware Service v0.1.0
+2026-02-14T16:36:04.483452Z  INFO pos_hardware_service: Configuration loaded. Port: 7777, Log Level: info
+2026-02-14T16:36:04.493893Z  INFO pos_hardware_lib::utils: No serial ports detected on this system.
+2026-02-14T16:36:04.494049Z  INFO pos_hardware_lib::device_manager: Loading Windows Printer: POS-58
+2026-02-14T16:36:04.494174Z  INFO pos_hardware_service: Device configuration loaded successfully
+2026-02-14T16:36:04.494299Z  INFO pos_hardware_service: Initializing WebSocket server...
+2026-02-14T16:36:04.496730Z  INFO pos_hardware_lib::socket: WebSocket server listening on 127.0.0.1:7777
+2026-02-14T16:36:05.002656Z  INFO pos_hardware_lib::socket: Incoming connection from 127.0.0.1:55040
+2026-02-14T16:36:13.384590Z  INFO pos_hardware_service: Starting POS Hardware Service v0.1.0
+2026-02-14T16:36:13.384713Z  INFO pos_hardware_service: Configuration loaded. Port: 7777, Log Level: info
+2026-02-14T16:36:13.390598Z  INFO pos_hardware_lib::utils: No serial ports detected on this system.
+2026-02-14T16:36:13.390722Z  INFO pos_hardware_lib::device_manager: Loading Windows Printer: POS-58
+2026-02-14T16:36:13.390840Z  INFO pos_hardware_service: Device configuration loaded successfully
+2026-02-14T16:36:13.390953Z  INFO pos_hardware_service: Initializing WebSocket server...
+2026-02-14T16:36:13.392538Z  INFO pos_hardware_lib::socket: WebSocket server listening on 127.0.0.1:7777
+2026-02-14T16:36:15.039775Z  INFO pos_hardware_lib::socket: Incoming connection from 127.0.0.1:59805
+2026-02-14T16:37:03.151944Z  INFO pos_hardware_lib::socket: Client disconnected
+2026-02-14T16:37:12.788664Z  INFO pos_hardware_lib::socket: Incoming connection from 127.0.0.1:60661
+2026-02-14T16:37:14.329013Z  INFO pos_hardware_lib::hardware::printer::windows: Sending 152 bytes to Windows printer: POS-58
+2026-02-14T16:37:19.441691Z  INFO pos_hardware_lib::hardware::drawer::printer_drawer: [PrinterDrawer drawer_main] Sending OPEN pulse via printer
+2026-02-14T16:37:19.441846Z  INFO pos_hardware_lib::hardware::printer::network: [NetworkPrinter printer_kitchen] Sending raw data
+2026-02-14T16:37:40.473198Z  INFO pos_hardware_lib::hardware::printer::windows: Sending 152 bytes to Windows printer: POS-58
+2026-02-14T16:37:40.527139Z  INFO pos_hardware_lib::hardware::printer::windows: Sending 152 bytes to Windows printer: POS-58
+2026-02-14T16:39:06.744353Z  INFO pos_hardware_service: Starting POS Hardware Service v0.1.0
+2026-02-14T16:39:06.744500Z  INFO pos_hardware_service: Configuration loaded. Port: 7777, Log Level: info
+2026-02-14T16:39:06.751307Z  INFO pos_hardware_lib::utils: No serial ports detected on this system.
+2026-02-14T16:39:06.751425Z  INFO pos_hardware_lib::device_manager: Loading Windows Printer: POS-58
+2026-02-14T16:39:06.751546Z ERROR pos_hardware_lib::device_manager: Drawer drawer_main references unknown printer printer_kitchen
+2026-02-14T16:39:06.752094Z  INFO pos_hardware_service: Device configuration loaded successfully
+2026-02-14T16:39:06.752206Z  INFO pos_hardware_service: Initializing WebSocket server...
+2026-02-14T16:39:06.753832Z  INFO pos_hardware_lib::socket: WebSocket server listening on 127.0.0.1:7777
+2026-02-14T16:39:07.659326Z  INFO pos_hardware_lib::socket: Incoming connection from 127.0.0.1:56735
+2026-02-14T16:39:13.289114Z  INFO pos_hardware_lib::hardware::printer::windows: Sending 152 bytes to Windows printer: POS-58
+2026-02-14T16:39:36.930148Z  INFO pos_hardware_lib::hardware::printer::windows: Sending 152 bytes to Windows printer: POS-58

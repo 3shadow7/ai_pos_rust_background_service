@@ -1,0 +1,68 @@
+# =========================================================================
+# POS Hardware Service Configuration
+# =========================================================================
+# This file controls how the background service behaves. 
+# It runs on the local computer and listening for commands from the POS web app.
+
+# The port where the WebSocket server will listen.
+# 8080 is standard, but you can change it if another program is using it.
+port = 7777
+
+# SECURITY WARNING: You MUST change this to a unique secret password.
+# The POS web application needs to send this exact token to be allowed to print.
+auth_token = "7777"
+
+# How detailed the logs/output should be. 
+# Options: "error", "warn", "info" (standard), "debug" (for troubleshooting), "trace" (everything)
+log_level = "info"
+
+# How many days to keep log files before deleting them automatically.
+# Default is 90 days (3 months) if not specified.
+log_retention_days = 90
+
+# =========================================================================
+# HARDWARE DEVICES
+# =========================================================================
+# This section lists all the physical hardware connected to this computer.
+# You can have multiple printers, drawers, etc.
+
+[devices]
+
+# --- PRINTERS ---
+# Define your receipt or kitchen printers here.
+
+# Example 1: A Network Printer (e.g., Epson T88 connected via Ethernet)
+## [[devices.printers]]
+## id = "printer_kitchen"              # Unique ID used by the POS app to target this printer
+## device_type = "mock"             # Type of connection: "network" or "mock" (for testing)
+## connection = "192.168.1.200:9100"   # IP Address and Port (9100 is standard for printers)
+
+# Example 2: A Serial/USB Printer
+# "serial" is now supported!
+# connection = "COM1" for Windows, "/dev/ttyUSB0" for Linux
+# You can specify baud rate like "COM1:115200", default is 9600
+[[devices.printers]]
+id = "POS-53"
+device_type = "POS-53"
+connection = "COM1:9600"
+
+# --- CASH DRAWERS ---
+# Define cash drawers here.
+
+# Example 1: Standard RJ11 Drawer connected to a Printer
+# When you ask to open this drawer, it sends a pulse command to "printer_kitchen"
+[[devices.drawers]]
+id = "drawer_main"
+device_type = "printer_driven"  # This type means "plugged into printer"
+connection = "printer_kitchen"  # The ID of the printer it's plugged into!
+
+# --- CUSTOMER DISPLAYS ---
+# Define pole displays/customer screens here.
+
+# Example 1: USB/Serial Customer Display (VFD)
+# Most customer displays are Serial (COM) even if they use USB cables (Virtual COM).
+[[devices.displays]]
+id = "display_customer"
+device_type = "serial"
+connection = "COM2:9600"        # Change this to your display's COM port
+

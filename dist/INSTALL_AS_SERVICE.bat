@@ -1,8 +1,9 @@
 @echo off
+cd /d "%~dp0"
 echo Installing POS Service...
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& {
-    $ExePath = 'C:\Users\Administrator\Desktop\Elias ozzy\projects\pos_infinty\rust_background_service\scripts\pos_hardware_service.exe';
-    $WorkDir = 'C:\Users\Administrator\Desktop\Elias ozzy\projects\pos_infinty\rust_background_service\scripts';
+    $ExePath = '$PWD\pos_hardware_service.exe';
+    $WorkDir = '$PWD';
     $TaskName = 'POS_Hardware_Background_Service';
     
     Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false -ErrorAction SilentlyContinue;

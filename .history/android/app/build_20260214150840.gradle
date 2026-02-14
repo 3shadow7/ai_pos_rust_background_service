@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.pos.hardware'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.pos.hardware"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+}
+
+// ==========================================================
+// AUTOMATIC RUST COMPILATION
+// ==========================================================
+// This tells Android Studio to run "cargo ndk" whenever you hit Build.
+// Prerequisite: You must have 'cargo-ndk' installed (cargo install cargo-ndk)
+// ==========================================================
+tasks.register('buildRust', Exec) {
+    workingDir "../../" // Go back to project root
+    commandLine 'cargo', 'ndk', '-t', 'arm64-v8a', '-t', 'armeabi-v7a', '-t', 'x86_64', '-o', './android/app/src/main/jniLibs', 'build', '--release'
+}
+
+// Hook it into the build process
+tasks.whenTaskAdded { task ->
+    if ((task.name == 'javaPreCompileDebug' || task.name == 'javaPreCompileRelease')) {
+        task.dependsOn 'buildRust'
+    }
+}

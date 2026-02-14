@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pos.hardware">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Needed for USB/Serial on some devices -->
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+
+    <application
+        android:allowBackup="true"
+        android:label="POS Bridge"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.NoDisplay">
+        
+        <service
+            android:name=".HardwareService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <activity android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
